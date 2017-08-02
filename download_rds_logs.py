@@ -78,7 +78,6 @@ for log in log_files:
         # get marker from database if it was already saved (new gambeta)
         rds_config['marker'] = db_log['last_marker'] if db_log.get('last_marker') != None else '0'
 
-    feedback.debug('Marker 2: {}'.format(rds_config['marker']))
     # Check if database file size corresponds to local file already existing (gambeta)
     database_file_size = 0 if db_log.get('file_size') == None else db_log['file_size']
     feedback.debug( 'Size of file existing on database: {}'.format(database_file_size) )
