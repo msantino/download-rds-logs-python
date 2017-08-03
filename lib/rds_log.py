@@ -96,7 +96,12 @@ def get_full_file_name(path, instance_identifier, file_name):
 
 
 def get_date_from_log_name( log_name ):
+    """
     date_array = log_name.split('/')[1].split('.')[-1].split('-')
     date_array.pop()
     date_str = '-'.join(date_array)
-    return datetime.strptime(date_str, '%Y-%m-%d')
+    return datetime.strptime(date_str, '%Y-%m-%d-%H')
+    """
+    date = log_name.split('/')[1].split('.')[-1]
+    return datetime.strptime(date, '%Y-%m-%d-%H')
+

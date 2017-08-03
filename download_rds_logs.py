@@ -4,7 +4,7 @@ from sys import exit
 from lib import rds_log
 from lib import feedback
 from lib.Database import Database
-from datetime import datetime
+from datetime import datetime, time
 
 # Defines output from feedback.debug()
 feedback.debug_enabled = os.getenv('DEBUG_ENABLED', True)
@@ -45,7 +45,7 @@ for log in log_files:
 
     # Check date from logfile name. If corresponds to older than 2 days will skip
     file_date = rds_log.get_date_from_log_name( log['LogFileName'] )
-    if abs((file_date - datetime.now()).days) > 1 and download_only_newer:
+    if abs((file_date - datetime.now()).seconds) > 10800 and download_only_newer:
         feedback.debug('Skiping log due to oldest file time [{}]'.format(file_date))
         continue
 
