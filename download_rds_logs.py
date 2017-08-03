@@ -45,8 +45,12 @@ for log in log_files:
 
     # Check date from logfile name. If corresponds to older than 2 days will skip
     file_date = rds_log.get_date_from_log_name( log['LogFileName'] )
-    if abs((file_date - datetime.now()).seconds) > 10800 and download_only_newer:
+    if abs((file_date - datetime.now()).days) > 0 and download_only_newer:
         feedback.debug('Skiping log due to oldest file time [{}]'.format(file_date))
+        continue
+
+    if abs((file_date - datetime.now()).seconds) > 3600:
+        feedback.debug('Skiping log due to oldest file hour [{}]'.format(file_date))
         continue
 
     # Reset global marker
