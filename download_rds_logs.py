@@ -50,6 +50,7 @@ for log in log_files:
         continue
 
     if abs((file_date - datetime.now()).seconds) > 3600:
+        feedback.output( 'Diff hours {}', format(abs((file_date - datetime.now()).seconds)))
         feedback.debug('Skiping log due to oldest file hour [{}]'.format(file_date))
         continue
 
