@@ -41,7 +41,7 @@ db = Database(db_config)
 
 
 log_files = rds_log.list_available_log_files( rds_client, rds_config['rds_instance_identifier'])
-for log in log_files:
+for log in reversed(log_files):
 
     # Check date from logfile name. If corresponds to older than 2 days will skip
     file_date = rds_log.get_date_from_log_name( log['LogFileName'] )
